@@ -4,6 +4,7 @@ import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import androidx.room.RoomWarnings;
 
 
 import com.google.gson.annotations.SerializedName;
@@ -21,8 +22,10 @@ public class User {
     private String email;
     private String phone;
     private String website;
+    @SuppressWarnings(RoomWarnings.PRIMARY_KEY_FROM_EMBEDDED_IS_DROPPED)
     @Embedded(prefix = "add_")
     private Address address;
+    @SuppressWarnings(RoomWarnings.PRIMARY_KEY_FROM_EMBEDDED_IS_DROPPED)
     @Embedded(prefix = "comp_")
     private Company company;
 

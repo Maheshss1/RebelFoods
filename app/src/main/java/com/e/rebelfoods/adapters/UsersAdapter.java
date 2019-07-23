@@ -64,8 +64,6 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
                     toggleFav(false, viewHolder);
                     userDao.deleteUser(user);
                     user.setFav(false);
-
-
                 }
             }
         });

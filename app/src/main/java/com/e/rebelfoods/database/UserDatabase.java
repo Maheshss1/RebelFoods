@@ -12,7 +12,7 @@ import com.e.rebelfoods.model.Geo;
 import com.e.rebelfoods.model.User;
 
 
-@Database(entities = {User.class, Address.class, Geo.class, Company.class}, version = 1)
+@Database(entities = {User.class, Address.class, Geo.class, Company.class}, version = 1, exportSchema = false)
 
 public abstract class UserDatabase extends RoomDatabase {
 

@@ -61,15 +61,17 @@ public class FavoriteFragment extends Fragment implements OnFavClickInterface {
             @Override
             public void onChanged(@Nullable List<User> users) {
 
-                if (users!=null && users.size()>0) {
+                if (users!=null) {
                     favoriteAdapter = new FavoriteAdapter(users, getContext());
                     favoriteAdapter.setOnFavClickInterface(FavoriteFragment.this);
                     recyclerView.setAdapter(favoriteAdapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
                     favListEmpty.setVisibility(View.GONE);
-                }else
-                    favListEmpty.setVisibility(View.VISIBLE);
+                    if (users.size() == 0){
+                        favListEmpty.setVisibility(View.VISIBLE);
+                    }
+                }
 
             }
         });
@@ -80,8 +82,9 @@ public class FavoriteFragment extends Fragment implements OnFavClickInterface {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser && mViewModel!=null)
-        mViewModel.setUsersFromNetwork(false);
+        if (isVisibleToUser && mViewModel!=null) {
+            mViewModel.setUsersFromNetwork(false);
+        }
 
     }
 
@@ -95,8 +98,10 @@ public class FavoriteFragment extends Fragment implements OnFavClickInterface {
 
     @Override
     public void onClick(boolean isListEmpty) {
-        if (isListEmpty)
+        if (isListEmpty) {
             favListEmpty.setVisibility(View.VISIBLE);
+            favoriteAdapter.notifyDataSetChanged();
+        }
         else
             favListEmpty.setVisibility(View.GONE);
 

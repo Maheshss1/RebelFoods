@@ -7,6 +7,7 @@ import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import androidx.room.RoomWarnings;
 
 import static androidx.room.ForeignKey.CASCADE;
 
@@ -18,6 +19,7 @@ public class Address implements Parcelable {
     private String suite;
     private String city;
     private String zipcode;
+    @SuppressWarnings(RoomWarnings.PRIMARY_KEY_FROM_EMBEDDED_IS_DROPPED)
     @Embedded(prefix = "geo_")
     private Geo geo;
     //foreign key
